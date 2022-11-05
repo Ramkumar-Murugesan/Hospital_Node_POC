@@ -1,13 +1,12 @@
-const config = require("../../config.json");
 const db = require("../../helpers/db");
-const Patient = db.Patient;
+const Patients = db.Patient;
 
 async function createPatientDao(patientData) {
-    console.log('dao',patientData)
+    console.log('dao',patientData.mobilenumber)
     
-    const user = await Patient.findOne({ mobilenumber: patientData.mobilenumber });
+    const user = await Patients.findOne({ mobilenumber: patientData.mobilenumber });
     if (user) throw `This patient already exists: ${patient.name}`;
-    const newpatient = new Patient(patientData);
+    const newpatient = new Patients(patientData);
     console.log(patient)
      await newpatient.save();
 }
