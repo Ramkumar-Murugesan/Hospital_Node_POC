@@ -8,14 +8,19 @@ function createPatientService(patientData){
 }
 
 function getAllPatient(){
-    return patientDao.getAllPatient();
+    return patientDao.getAllPatients();
 }
 
 function getPatientbyId(id){
     return patientDao.getPatientbyId(id);
 }
+
+function update(id, patientParam) {
+    return patientDao.patientupdate(id, patientParam);
+  }
 module.exports = {
     createPatientService,
     getAllPatient,
-    getPatientbyId
+    getPatientbyId,
+    update
   };

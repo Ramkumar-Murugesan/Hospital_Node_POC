@@ -25,9 +25,22 @@ function getPatientbyId(req,res,next){
     }).catch((err) =>next(err));
 }
 
+function update(req, res, next) {
+    req.body.modifiedAt=new Date();
+    
+    patientServices
+        .update(req.params.id, req.body)
+        .then(() =>
+            res.json({
+                message: `Patient with id: ${req.params.id} updated successfully.`,
+            })
+        )
+        .catch((error) => next(error));
+}
+
 
 module.exports = {
     createPatient,
     getAllPatient,
-    getPatientbyId
+    getPatientbyId,update
 };

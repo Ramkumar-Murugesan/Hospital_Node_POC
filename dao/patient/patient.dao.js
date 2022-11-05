@@ -1,25 +1,34 @@
 const db = require("../../helpers/db");
 const Patients = db.Patient;
-// const Patients = db.User;
+// const Patients = db.patientdata;
 
 async function createPatientDao(patientData) {
-    const user = await Patients.findOne({ mobilenumber: patientData.mobilenumber });
-    if (user) throw `This patient already exists: ${patientData.name}`;
+    const patientrecord = await Patients.findOne({ mobilenumber: patientData.mobilenumber });
+    if (patientrecord) throw `This patient already exists: ${patientData.name}`;
     const newpatient = new Patients(patientData);
-    // console.log(newpatient)
      await newpatient.save();
 }
 
 async function getAllPatients() {
-    return await Patient.find();
+    return await Patients.find().populate({path:'test',model:'Item',populate:[{path:'department', model:'Department'}]});
 }
 
 async function getPatientbyId(id){
-    const patient = await Patient.findById({ id });
+    const patient = await Patients.findById({ id });
 }
+
+async function patientupdate(id, patientParam) {
+    console.log(id, patientParam);
+    const patientdata = await Patients.findById(id);
+    console.log(patientdata, patientParam);
+    Object.assign(patientdata, patientParam);
+    await patientdata.save();
+   
+  }
 
 module.exports = {
     createPatientDao,
     getAllPatients,
     getPatientbyId,
+    patientupdate
   };

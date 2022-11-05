@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
   itemname:{ type: String, required: true },
-  department:{ type: String, required: true },
+  department:{ type: Schema.Types.ObjectId, ref: 'Department' },
 });
 
 schema.set("toJSON", {

@@ -1,4 +1,4 @@
 {
-  "connectionString": "mongodb://localhost:27018/hospitaldemo",
+  "connectionString": "mongodb://localhost:27017/hospitaldemo",
   "secret": "M@12345#$.09*&"
 }
