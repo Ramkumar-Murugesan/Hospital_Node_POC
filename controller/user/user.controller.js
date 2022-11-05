@@ -31,7 +31,7 @@ function register(req, res, next) {
 function getAll(req, res, next) {
     const currentUser = req.user;
 
-    if (currentUser.role !== Role.Admin) {
+    if (currentUser.userType !== Role.Admin) {
         return res.status(401).json({ message: "Not Authorized!" });
     }
     userServices
@@ -41,7 +41,7 @@ function getAll(req, res, next) {
 }
 
 function getCurrent(req, res, next) {
-    console.log(req);
+    console.log("current user", req);
     userServices
         .getById(req.user.sub)
         .then((user) => (user ? res.json(user) : res.status(404)))
@@ -62,6 +62,8 @@ function getById(req, res, next) {
 }
 
 function update(req, res, next) {
+    req.body.modifiedAt=new Date();
+    
     userServices
         .update(req.params.id, req.body)
         .then(() =>

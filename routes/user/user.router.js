@@ -10,7 +10,7 @@ router.post("/register", userController.register);
 router.get("/", jwt(Role.Admin), userController.getAll);
 router.get("/current", jwt(), userController.getCurrent);
 router.get("/:id", userController.getById);
-router.put("/:id",userController. update);
-// router.delete("/:id", userController.delete);
+router.put("/:id",jwt(), userController. update);
+router.delete("/:id", jwt(), userController.delete);
 
 module.exports = router;

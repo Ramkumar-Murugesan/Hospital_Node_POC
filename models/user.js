@@ -7,8 +7,12 @@ const schema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   password: { type: String, required: true },
-  role: { type: String, required: true },
-  createdDate: { type: Date, default: Date.now },
+  userType: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
+  createdBy: {type: String},
+  modifiedAt: { type: Date, default: Date.now },
+  modifiedBy: {type: String},
+  department: {type: String}
 });
 
 schema.set("toJSON", {
