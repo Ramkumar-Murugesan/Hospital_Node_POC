@@ -3,10 +3,8 @@ const Patients = db.Patient;
 // const Patients = db.User;
 
 async function createPatientDao(patientData) {
-    console.log('dao',patientData.mobilenumber)
-    
-    // const user = await Patients.findOne({ mobilenumber: patientData.mobilenumber });
-    // if (user) throw `This patient already exists: ${patient.name}`;
+    const user = await Patients.findOne({ mobilenumber: patientData.mobilenumber });
+    if (user) throw `This patient already exists: ${patientData.name}`;
     const newpatient = new Patients(patientData);
     // console.log(newpatient)
      await newpatient.save();
